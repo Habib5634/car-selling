@@ -12,7 +12,7 @@ export default {
           light: "#d1e7f8", 
           DEFAULT: "#003f8a", 
           dark: "#005bb5", 
-          gray:"#f5f5f5"
+          gray:"#757f95"
         }
       },
       backgroundImage: {
@@ -35,8 +35,10 @@ export default {
         'blueDark': "#00152c",
         'blueLight': "#d1e7f8",
         'gray': "#f5f5f5",
+        'gray2': "#757f95",
         'blackish': "#25262f",
-        'red':'#ef1d26'
+        'red':'#ef1d26',
+        'babypink' : '#ef17210d',
         
       },
     },

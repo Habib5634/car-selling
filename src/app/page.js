@@ -16,29 +16,29 @@ import { useEffect } from "react";
 export default function Home() {
   useEffect(() => {
     Aos.init({
-        // Global settings here...
+      // Global settings here...
     });
-}, []);
+  }, []);
   return (
     <>
-    <div className="relative " >
-    <Navbar />
-    <div className="bg-herobg  relative bg-center bg-no-repeat bg-cover h-screen -mt-[83px]  " >
-    <div className="absolute inset-0 z-0 bg-black bg-opacity-60 "></div>
-      <HeroSection/>
-    </div>
+      <div className="relative " >
+        <Navbar />
+        <div className="bg-herobg  relative bg-center bg-no-repeat bg-cover h-screen -mt-[83px]  " >
+          <div className="absolute inset-0 z-0 bg-black bg-opacity-60 "></div>
+          <HeroSection />
+        </div>
 
-    {/* other components */}
-<FeaturedCars/>
-<OurFacts/>
-<CarCategories/>
-<AboutUs/>
-<WhyChooseUs/>
-<Testimonials/>
-    <ContactUs/>
-<Footer/>
+        {/* other components */}
+        <FeaturedCars />
+        <OurFacts />
+        <CarCategories />
+        <AboutUs />
+        <WhyChooseUs />
+        <Testimonials />
+        <ContactUs />
+        <Footer />
 
-    </div>
+      </div>
     </>
   );
 }
