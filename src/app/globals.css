@@ -10,6 +10,23 @@ body{
   font-style: normal;
 }
 
+@keyframes move {
+  0% {
+      left: 0;
+  }
+  50% {
+      left: 100%;
+      transform: translateX(-100%);
+  }
+  100% {
+      left: 0;
+  }
+}
+
+.animate-move {
+  animation: move 2s infinite ease-in-out;
+}
+
 
 @layer utilities {
   .main-div {
