@@ -92,14 +92,14 @@ const Navbar = () => {
 
                             {/* <button onClick={() => scrollToSection('contact')} className={`${scrollTrigger > 1 ? ' border-black hover:border-red hover:text-red ' : ' border-white hover:bg-red'} anim1 rounded-lg text-center text-[15px]  px-3 md:px-8 py-4 lg:py-3 lg:px-7   font-semibold uppercase bg-transparent border-2  `}>Contact Us</button> */}
                         </div>
-                        {/* <div className='flex lg:hidden items-center gap-4 '>
+                        <div className='flex lg:hidden items-center gap-4 '>
 
 
-
-                            <button onClick={() => scrollToSection('contact')} className={`${scrollTrigger > 1 ? ' border-black hover:border-red hover:text-red ' : 'text-white   border-white hover:bg-red'} anim1 rounded-lg text-center text-[12px]  py-1.5 px-5   font-semibold uppercase bg-transparent border-2  `}>Contact Us</button>
+{/* 
+                            <button onClick={() => scrollToSection('contact')} className={`${scrollTrigger > 1 ? ' border-black hover:border-red hover:text-red ' : 'text-white   border-white hover:bg-red'} anim1 rounded-lg text-center text-[12px]  py-1.5 px-5   font-semibold uppercase bg-transparent border-2  `}>Contact Us</button> */}
 
                             <FaBars className={`${scrollTrigger > 1 ? "text-black" : "text-white"} anim1`} size={25} onClick={handelShowSidebar} />
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>
