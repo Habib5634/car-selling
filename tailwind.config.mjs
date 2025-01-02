@@ -17,7 +17,7 @@ export default {
       },
       backgroundImage: {
         'herobg': "url('/assets/hero.png')",
-        'aboutbg': "url('/assets/aboutbg.png')",
+        'img2': "url('/assets/img2.png')",
                
 
       },
