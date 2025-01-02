@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from "react";
 import 'aos/dist/aos.css';
 import Slider from "react-slick";
@@ -11,8 +12,8 @@ import { GiGearStick, GiSteeringWheel } from "react-icons/gi";
 import { IoCarSport } from "react-icons/io5";
 
 const Cards = () => {
-    const [showAll, setShowAll] = useState(false);
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    // const [showAll, setShowAll] = useState(false);
+    // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
     const [cars] = useState([
         {

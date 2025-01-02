@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react'
 import { FaHandshake } from "react-icons/fa6";
 import { FaCircleDollarToSlot } from "react-icons/fa6";
