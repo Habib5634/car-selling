@@ -15,7 +15,7 @@ const CarCategories = () => {
   };
   return (
 
-    <div id='category' className='bg-gray py-4 sm:py-6 px-3 sm:px-6 md:px-10 w-full relative'>
+    <div id='category' className='bg-white py-4 sm:py-6 px-3 sm:px-6 md:px-10 w-full relative'>
       <div className='max-w-[1440px] mx-auto w-full gap-5 z-[0.1] flex items-center justify-center flex-col py-10 '>
 
         <div data-aos="fade-up" data-aos-duration="1000" className="flex flex-col items-center w-full justify-center my-6">
