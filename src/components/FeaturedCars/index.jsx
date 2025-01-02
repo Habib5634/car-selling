@@ -1,16 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Filter from './Filter'
+import Cards from './Cards';
 
 const FeaturedCars = () => {
-  
-
-  
-
-
-  
-
- 
-
 
 
   return (
@@ -20,9 +12,11 @@ const FeaturedCars = () => {
           <h2 className='text-black text-[15px] md:text-[25px] font-semibold text-start text-wrap lg:text-nowrap border-b-2 border-b-gray pb-[10px]'>
             Let's Find Your Dream Car
           </h2>
-            <Filter />
+          <Filter />
+
         </div>
       </div>
+      <Cards />
     </div>
   );
 
