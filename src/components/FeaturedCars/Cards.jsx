@@ -231,8 +231,8 @@ const Cards = () => {
                 </div>
                 <h1 className='text-black text-[25px] md:text-[35px] lg:text-[50px] xl:text-[60px]  font-bold '>Let's Check Latest <span className='text-red'>Cars</span></h1>
 
-                <div className="relative w-[10%] bg-red h-1 bg-red-600">
-                    <div className="absolute top-0 left-0 w-4 h-[5px] bg-white animate-move"></div>
+                <div className="relative w-[30%] md:w-[10%] bg-red h-1 bg-red-600">
+                    <div className="absolute top-0 left-0 w-4 h-[6px] md:h-[5px] bg-white animate-move"></div>
                 </div>
 
             </div>

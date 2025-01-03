@@ -1,13 +1,24 @@
 import React from 'react'
+// import Image from 'next/image';
 import { IoCarSport } from "react-icons/io5";
+
 const CarCategories = () => {
 
   const carCategories = [
-    // { name: 'Sedan', image: '/images/sedan.jpg' },
-    // { name: 'Coupe', image: '/images/coupe.jpg' },
-    // { name: 'Luxury', image: '/images/luxury.jpg' },
-    { name: 'SUV', image: './images/suv.png' },
-    { name: 'Compact', image: './images/sport.webp' },
+
+    { name: 'SUV', image: '/images/suv.png' },
+    { name: 'Sedan', image: '/images/sedan.png' },
+    { name: 'Convertible', image: '/images/convertable.png' },
+    { name: 'Compact', image: '/images/compact.png' },
+    { name: 'Crossover', image: '/images/crossover.png' },
+    { name: 'Wagon', image: '/images/wagon.png' },
+    { name: 'Sports', image: '/images/sports.png' },
+    { name: 'Pickup', image: '/images/pickup.png' },
+    { name: 'Family MPV', image: '/images/family.png' },
+    { name: 'Coupe', image: '/images/coupe.png' },
+    { name: 'Electric', image: '/images/electric.png' },
+    { name: 'Luxury', image: '/images/luxury.png' },
+
   ];
 
   const handleCategoryClick = (categoryName) => {
@@ -25,24 +36,26 @@ const CarCategories = () => {
           </div>
           <h1 className='text-black text-[25px] md:text-[35px] lg:text-[50px] xl:text-[60px]  font-bold '>Car By Body <span className='text-red'>Type</span></h1>
 
-          <div className="relative w-[10%] bg-red h-1 bg-red-600">
-            <div className="absolute top-0 left-0 w-4 h-[5px] bg-white animate-move"></div>
+          <div className="relative w-[30%] md:w-[10%] bg-red h-1 bg-red-600">
+            <div className="absolute top-0 left-0 w-4 h-[6px] md:h-[5px] bg-white animate-move"></div>
           </div>
 
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
+        <div data-aos="fade-up"
+          data-aos-duration="3000"
+          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 py-2 md:py-4 md:px-[10%] ">
           {carCategories.map((category) => (
             <div
               key={category.name}
-              className="flex flex-col items-center cursor-pointer"
+              className="group flex flex-col items-center bg-white p-4  rounded-xl shadow-2xl transform transition duration-300 hover:-translate-y-2 cursor-pointer"
               onClick={() => handleCategoryClick(category.name)}
             >
               <img
                 src={category.image}
                 alt={category.name}
-                className="w-40 h-40 object-cover rounded-lg"
+                className=" object-cover bg-transparent rounded-lg"
               />
-              <p className="mt-2 text-lg font-semibold">{category.name}</p>
+              <p className="mt-2 text-sm font-semibold group-hover:text-red">{category.name}</p>
             </div>
           ))}
         </div>
