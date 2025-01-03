@@ -82,7 +82,7 @@ const Filter = () => {
                         <label htmlFor={key} className="mb-1 font-medium capitalize">
                             {key}
                         </label>
-                        <div className='border  rounded-xl border-gray2 pr-3 '>
+                        <div className='border   border-gray2 rounded-xl pr-3 '>
 
                         <select
                             id={key}

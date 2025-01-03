@@ -4,12 +4,20 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 body{
   font-family: "Questrial", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
+.rale {
+  font-family: "Raleway", serif;
 
+}
+.robo {
+  font-family: "Roboto Condensed", serif;
+ 
+}
 @keyframes move {
   0% {
       left: 0;

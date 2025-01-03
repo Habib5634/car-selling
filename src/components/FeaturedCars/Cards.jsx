@@ -94,10 +94,10 @@ const Cards = () => {
             color: "Black",
             description:
                 "Luxury SUV with advanced safety features and a spacious interior.",
-                images: [
-                    "https://media.ed.edmunds-media.com/ford/mustang/2021/oem/2021_ford_mustang_coupe_gt-premium_fq_oem_1_500.jpg",
-                    "https://media.ed.edmunds-media.com/ford/mustang/2021/oem/2021_ford_mustang_coupe_gt-premium_fq_oem_2_500.jpg",
-                ],
+            images: [
+                "https://media.ed.edmunds-media.com/ford/mustang/2021/oem/2021_ford_mustang_coupe_gt-premium_fq_oem_1_500.jpg",
+                "https://media.ed.edmunds-media.com/ford/mustang/2021/oem/2021_ford_mustang_coupe_gt-premium_fq_oem_2_500.jpg",
+            ],
         },
         {
             _id: "6",
@@ -221,6 +221,44 @@ const Cards = () => {
     //     }
     // }, [showAll, screenWidth, cars]);
 
+    const outerSliderSettings = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        pauseOnHover: true,
+        prevArrow: <button className="slick-prev" style={{ background: 'black', color: 'red' }}>{'<'}</button>,
+        nextArrow: <button className="slick-next" style={{ background: 'black', color: 'red' }}>{'>'}</button>,
+        responsive: [
+            {
+                breakpoint: 1440,
+                settings: {
+                    slidesToShow: 4,
+                },
+            },
+            {
+                breakpoint: 1280,
+                settings: {
+                    slidesToShow: 3,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                },
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+        ],
+    };
+
     return (
         <div className="container mx-auto p-2 md:px-6 md:py-12 lg:py-20">
 
@@ -238,68 +276,70 @@ const Cards = () => {
 
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <Slider {...outerSliderSettings}>
                 {cars.map((car) => (
-                    <div key={car._id} className="border  border-white bg-white p-4 rounded-lg shadow-shad">
-                        {/* Carousel inside each card */}
-                        <Slider {...sliderSettings}>
-                            {car.images.map((image, index) => (
-                                <div key={index} className="w-full h-48 overflow-hidden rounded-xl">
-                                    <img
-                                        src={image}
-                                        alt={`${car.title} image ${index + 1}`}
-                                        className="w-full h-full object-cover transition-transform duration-2000 ease-in-out hover:scale-110 transform origin-center"
-                                    />
+                    <div key={car._id} className="h-[456px]">
+                        <div className="m-2 border border-white bg-white p-4 rounded-lg shadow-shad  ">
+                            <Slider {...sliderSettings}>
+                                {car.images.map((image, index) => (
+                                    <div key={index} className="w-full h-48 overflow-hidden rounded-xl">
+                                        <img
+                                            src={image}
+                                            alt={`${car.title} image ${index + 1}`}
+                                            className="w-full h-full object-cover transition-transform duration-2000 ease-in-out hover:scale-110 transform origin-center"
+                                        />
+                                    </div>
+                                ))}
+                            </Slider>
+                            <div className="px-2 flex flex-col justify-between ">
+                                <h2 className="text-lg md:text-xl font-semibold mt-6    ">{car.title}</h2>
+                                <div className="grid grid-cols-2 mt-3 gap-2">
+
+                                    <div className="flex items-center">
+                                        < FaCarAlt className="text-red mr-2" />
+                                        <p className="text-gray2 font-normal">Model: {car.year}</p>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <BsFuelPumpFill className="text-red mr-2" />
+                                        <p className="text-gray2 font-normal">{car.fuelType} </p>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <FaRoad className="text-red mr-2" />
+                                        <p className="text-gray2 font-semibold "><span className="font-normal">{car.mileage} miles</span></p>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <GiSteeringWheel className="text-red mr-2" />
+                                        <p className="text-gray2 font-semibold"> <span className="font-normal">{car.transmission}</span></p>
+                                    </div>
+
+                                    <div className="flex items-center">
+                                        <IoColorFill className="mr-2 text-red" />
+                                        <p className="text-gray2 flex items-center font-semibold">
+                                            <span
+                                                className="inline-block w-4 h-4 rounded-full mx-2 font-normal border border-gray2"
+                                                style={{ backgroundColor: car.color }}
+                                            ></span>
+                                            {car.color}
+                                        </p>
+                                    </div>
                                 </div>
-                            ))}
-                        </Slider>
-                        <div className="px-2 flex flex-col justify-between ">
-                            <h2 className="text-lg md:text-xl font-semibold mt-6    ">{car.title}</h2>
-                            <div className="grid grid-cols-2 mt-3 gap-2">
 
-                            <div className="flex items-center">
-                                < FaCarAlt className="text-red mr-2" />
-                                <p className="text-gray2 font-normal">Model: {car.year}</p>
-                            </div>
-                            <div className="flex items-center">
-                                <BsFuelPumpFill className="text-red mr-2" />
-                                <p className="text-gray2 font-normal">{car.fuelType} </p>
-                            </div>
-                            <div className="flex items-center">
-                                <FaRoad className="text-red mr-2" />
-                                <p className="text-gray2 font-semibold "><span className="font-normal">{car.mileage} miles</span></p>
-                            </div>
-                            <div className="flex items-center">
-                                <GiSteeringWheel  className="text-red mr-2" />
-                                <p className="text-gray2 font-semibold"> <span className="font-normal">{car.transmission}</span></p>
-                            </div>
 
-                            <div className="flex items-center">
-                                <IoColorFill className="mr-2 text-red" />
-                                <p className="text-gray2 flex items-center font-semibold">
-                                    <span
-                                        className="inline-block w-4 h-4 rounded-full mx-2 font-normal border border-gray2"
-                                        style={{ backgroundColor: car.color }}
-                                        ></span>
-                                    {car.color}
-                                </p>
-                            </div>
-                                        </div>
 
-                            
 
-                              
-                            <div className="flex justify-between items-center gap-2 mt-4">
-                            <p className="text-red text-2xl  font-bold">${car.price}</p>
-                          
-                            <button className="bg-red text-white  px-4 py-2 rounded-xl">
-                                Contact Seller
-                            </button>
+                                <div className="flex justify-between items-center gap-2 mt-4">
+                                    <p className="text-red text-2xl  font-bold">${car.price}</p>
+
+                                    <button className="bg-red text-white  px-4 py-2 rounded-xl">
+                                        Contact Seller
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 ))}
-            </div>
+            </Slider>
+
             {/* Show more button */}
             <div className="flex justify-center mt-6">
                 <button

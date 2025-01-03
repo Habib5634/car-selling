@@ -18,6 +18,7 @@ export default {
       backgroundImage: {
         'herobg': "url('/assets/hero.png')",
         'img2': "url('/assets/img2.png')",
+        'catbg': "url('/assets/categorybg.png')",
                
 
       },
@@ -39,6 +40,7 @@ export default {
         'blackish': "#25262f",
         'red':'#ef1d26',
         'babypink' : '#ef17210d',
+        'green':'#22c55e'
         
       },
     },

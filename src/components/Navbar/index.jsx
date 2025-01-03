@@ -46,7 +46,7 @@ const Navbar = () => {
                 <div className='w-full shadow-shad absolute top-0 z-30'>
 
                     <div className='bg-transparent w-full mx-auto  py-4 z-30 max-w-[1440px] px-5 md:px-8 lg:px-14 flex justify-between flex-wrap gap-4 items-center'>
-                        <div className='flex items-center gap-4 text-white '>
+                        <div className='hidden md:flex items-center gap-4 text-white '>
                             <div className='flex items-center text-nowrap gap-2'>
                                 <FaPhoneAlt size={14} />
                                 +92347673673
@@ -70,7 +70,7 @@ const Navbar = () => {
                 </div>
 
             </div>
-            <div className={`flex z-30 sticky ${scrollTrigger > 56 ? "top-0 anim3" : "top-[96px] md:top-[56px] anim3"}   justify-center w-full anim1   ${scrollTrigger < 10 ? ' bg-transparent' : " bg-white shadow-shad"} `}>
+            <div className={`flex z-30 sticky ${scrollTrigger > 56 ? "top-0 anim3" : "top-[56px] anim3"}   justify-center w-full anim1   ${scrollTrigger < 10 ? ' bg-transparent' : " bg-white shadow-shad"} `}>
 
                 <div className='flex justify-center w-full max-w-[1440px] mx-auto '>
                     <div className={`flex justify-between items-center   px-5 md:px-8 lg:px-14 py-4   w-full `}>
