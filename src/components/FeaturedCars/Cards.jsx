@@ -12,7 +12,6 @@ import { IoCarSport } from "react-icons/io5";
 
 const Cards = () => {
     const [showAll, setShowAll] = useState(false);
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
     const [cars] = useState([
         {
@@ -66,36 +65,32 @@ const Cards = () => {
         },
         {
             _id: "4",
-            title: "2022 BMW X5",
-            price: 65000,
-            year: 2022,
-            mileage: 12000,
+            title: "2021 Ford Mustang GT",
+            price: 45000,
+            year: 2021,
+            mileage: 8000,
             fuelType: "Gasoline",
-            transmission: "Automatic",
-            color: "Black",
-            description:
-                "Luxury SUV with advanced safety features and a spacious interior.",
+            transmission: "Manual",
+            color: "Red",
+            description: "Powerful sports car with a V8 engine and iconic design.",
             images: [
-                "https://media.ed.edmunds-media.com/bmw/x5/2022/oem/2022_bmw_x5_4dr-suv_m50i_fq_oem_1_500.jpg",
-                "https://media.ed.edmunds-media.com/bmw/x5/2022/oem/2022_bmw_x5_4dr-suv_m50i_fq_oem_2_500.jpg",
-                "https://media.ed.edmunds-media.com/bmw/x5/2022/oem/2022_bmw_x5_4dr-suv_m50i_fq_oem_3_500.jpg",
+                "https://media.ed.edmunds-media.com/ford/mustang/2021/oem/2021_ford_mustang_coupe_gt-premium_fq_oem_1_500.jpg",
+                "https://media.ed.edmunds-media.com/ford/mustang/2021/oem/2021_ford_mustang_coupe_gt-premium_fq_oem_2_500.jpg",
             ],
         },
         {
             _id: "5",
-            title: "2022 BMW X5",
-            price: 65000,
-            year: 2022,
-            mileage: 12000,
+            title: "2021 Ford Mustang GT",
+            price: 45000,
+            year: 2021,
+            mileage: 8000,
             fuelType: "Gasoline",
-            transmission: "Automatic",
-            color: "Black",
-            description:
-                "Luxury SUV with advanced safety features and a spacious interior.",
+            transmission: "Manual",
+            color: "Red",
+            description: "Powerful sports car with a V8 engine and iconic design.",
             images: [
-                "https://media.ed.edmunds-media.com/bmw/x5/2022/oem/2022_bmw_x5_4dr-suv_m50i_fq_oem_1_500.jpg",
-                "https://media.ed.edmunds-media.com/bmw/x5/2022/oem/2022_bmw_x5_4dr-suv_m50i_fq_oem_2_500.jpg",
-                "https://media.ed.edmunds-media.com/bmw/x5/2022/oem/2022_bmw_x5_4dr-suv_m50i_fq_oem_3_500.jpg",
+                "https://media.ed.edmunds-media.com/ford/mustang/2021/oem/2021_ford_mustang_coupe_gt-premium_fq_oem_1_500.jpg",
+                "https://media.ed.edmunds-media.com/ford/mustang/2021/oem/2021_ford_mustang_coupe_gt-premium_fq_oem_2_500.jpg",
             ],
         },
         {
@@ -164,9 +159,41 @@ const Cards = () => {
         },
     ]);
 
-    const [visibleCars, setVisibleCars] = useState(cars.slice(0, 8)); // Initial default 8 cars
 
-    const sliderSettings = {
+
+    const outerSliderSettings = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        pauseOnHover: true,
+        prevArrow: <button className="slick-prev" style={{ background: 'black', color: 'red' }}>{'<'}</button>,
+        nextArrow: <button className="slick-next" style={{ background: 'black', color: 'red' }}>{'>'}</button>,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 4,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                },
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+        ],
+    };
+
+    const innerSliderSettings = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -183,42 +210,10 @@ const Cards = () => {
         dotsClass: "slick-dots slick-thumb",
     };
 
-    // Show only 8 cars initially (2 rows if 4 columns per row)
-    useEffect(() => {
-        const handleResize = () => {
-            setScreenWidth(window.innerWidth);
-        };
+    const handleClick = () => {
+        setShowAll(!showAll)
+    }
 
-        // Initial resize check
-        handleResize();
-
-        // Update visible cars on resize
-        window.addEventListener('resize', handleResize);
-
-        // Cleanup event listener on component unmount
-        return () => window.removeEventListener('resize', handleResize);
-    }, [cars]);
-
-    useEffect(() => {
-        // Update visible cars based on screen size and showAll state
-        if (showAll) {
-            if (screenWidth < 640) {
-                setVisibleCars(cars.slice(0, 8)); // Show all cars on small screens
-            } else if (screenWidth < 768) {
-                setVisibleCars(cars.slice(0, 12)); // Show 12 cars on medium screens
-            } else {
-                setVisibleCars(cars.slice(0, cars.length)); // Show all cars on large screens
-            }
-        } else {
-            if (screenWidth < 640) {
-                setVisibleCars(cars.slice(0, 4)); // Show 4 cars on small screens
-            } else if (screenWidth < 770) {
-                setVisibleCars(cars.slice(0, 6)); // Show 6 cars on medium screens
-            } else {
-                setVisibleCars(cars.slice(0, 8)); // Show 8 cars on larger screens
-            }
-        }
-    }, [showAll, screenWidth, cars]);
 
     return (
         <div className="container mx-auto p-2 md:p-6">
@@ -237,69 +232,68 @@ const Cards = () => {
 
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {visibleCars.map((car) => (
-                    <div key={car._id} className="border border-white bg-white p-4 rounded-lg shadow-lg">
-                        {/* Carousel inside each card */}
-                        <Slider {...sliderSettings}>
-                            {car.images.map((image, index) => (
-                                <div key={index} className="w-full h-48 overflow-hidden rounded-xl">
-                                    <img
-                                        src={image}
-                                        alt={`${car.title} image ${index + 1}`}
-                                        className="w-full h-full object-cover transition-transform duration-2000 ease-in-out hover:scale-110 transform origin-center"
-                                    />
+            <Slider {...outerSliderSettings}>
+                {cars.map((car) => (
+                    <div key={car._id} className="">
+                        <div className="m-4 border border-white bg-white p-4 rounded-lg shadow-lg  ">
+                            <Slider {...innerSliderSettings}>
+                                {car.images.map((image, index) => (
+                                    <div key={index} className="w-full h-48 overflow-hidden rounded-xl">
+                                        <img
+                                            src={image}
+                                            alt={`${car.title} image ${index + 1}`}
+                                            className="w-full h-full object-cover transition-transform duration-2000 ease-in-out hover:scale-110 transform origin-center"
+                                        />
+                                    </div>
+                                ))}
+                            </Slider>
+
+                            <div className="px-2">
+                                <h2 className="text-lg md:text-xl font-semibold mt-4">{car.title}</h2>
+                                <div className="flex items-center">
+                                    <FaCarAlt className="text-red mr-2" />
+                                    <p className="text-gray-600 font-semibold"> Model : <span className="font-normal">{car.year}</span></p>
                                 </div>
-                            ))}
-                        </Slider>
-                        <div className="px-2">
-                            <h2 className="text-lg md:text-xl font-semibold mt-4">{car.title}</h2>
-                            <div className="flex items-center">
-                                < FaCarAlt className="text-red mr-2" />
-                                <p className="text-gray-600 font-semibold"> Model : <span className="font-normal">{car.year}</span></p>
+                                <div className="flex items-center">
+                                    <BsFuelPumpFill className="text-red mr-2" />
+                                    <p className="text-gray-600 font-semibold"> Fuel : <span className="font-normal">{car.fuelType}</span> </p>
+                                </div>
+                                <div className="flex items-center">
+                                    <IoSpeedometerSharp className="text-red mr-2" />
+                                    <p className="text-gray-600 font-semibold ">Mileage : <span className="font-normal">{car.mileage} miles</span></p>
+                                </div>
+                                <div className="flex items-center">
+                                    <GiGearStick className="text-red mr-2" />
+                                    <p className="text-gray-600 font-semibold">Transmission : <span className="font-normal">{car.transmission}</span></p>
+                                </div>
+                                <div className="flex items-center">
+                                    <IoColorFill className="mr-2 text-red" />
+                                    <p className="text-gray-600 flex items-center font-semibold">
+                                        Color :<span
+                                            className="inline-block w-6 h-6 rounded-full mx-2 font-normal border border-gray2"
+                                            style={{ backgroundColor: car.color }}
+                                        ></span>
+                                        {car.color}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p className="text-red font-bold">${car.price}</p>
+                                </div>
+                                {/* <p className="text-gray-600 mt-2 font-semibold">Description : <span className="font-normal">{car.description}</span> </p> */}
+                                <button className="bg-red text-white mt-4 px-4 py-2 rounded-xl">
+                                    Contact Seller
+                                </button>
                             </div>
-                            <div className="flex items-center">
-                                <BsFuelPumpFill className="text-red mr-2" />
-                                <p className="text-gray-600 font-semibold"> Fuel : <span className="font-normal">{car.fuelType}</span> </p>
-                            </div>
-                            <div className="flex items-center">
-                                <IoSpeedometerSharp className="text-red mr-2" />
-                                <p className="text-gray-600 font-semibold ">Mileage : <span className="font-normal">{car.mileage} miles</span></p>
-                            </div>
-                            <div className="flex items-center">
-                                <GiGearStick className="text-red mr-2" />
-                                <p className="text-gray-600 font-semibold">Transmission : <span className="font-normal">{car.transmission}</span></p>
-                            </div>
-
-                            <div className="flex items-center">
-                                <IoColorFill className="mr-2 text-red" />
-                                <p className="text-gray-600 flex items-center font-semibold">
-                                    Color :<span
-                                        className="inline-block w-6 h-6 rounded-full mx-2 font-normal border border-gray2"
-                                        style={{ backgroundColor: car.color }}
-                                    ></span>
-                                    {car.color}
-                                </p>
-                            </div>
-
-                            <div>
-
-                                <p className="text-red font-bold">${car.price}</p>
-                            </div>
-
-
-                            <p className="text-gray-600 mt-2 font-semibold">Description : <span className="font-normal">{car.description}</span> </p>
-                            <button className="bg-red text-white mt-4 px-4 py-2 rounded-xl">
-                                Contact Seller
-                            </button>
                         </div>
+                        {/* Inner Slider for images */}
+
                     </div>
                 ))}
-            </div>
+            </Slider>
             {/* Show more button */}
             <div className="flex justify-center mt-6">
                 <button
-                    onClick={() => setShowAll(!showAll)}
+                    onClick={handleClick}
                     className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600"
                 >
                     {showAll ? "Show Less" : "Show More"}

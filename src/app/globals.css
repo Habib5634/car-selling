@@ -24,7 +24,7 @@ body{
 }
 
 .animate-move {
-  animation: move 2s infinite ease-in-out;
+  animation: move 4s infinite ease-in-out;
 }
 
 
