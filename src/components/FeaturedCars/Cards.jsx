@@ -105,7 +105,7 @@ const Cards = () => {
             </div>
 
             <Slider {...outerSliderSettings}>
-                {cars?.map((car) => (
+                {(cars?.length > 0 ? cars : [])?.map((car) => (
                     <div key={car._id} className="h-[456px]">
                         <div className="m-2 border border-white bg-white p-4 rounded-lg shadow-shad  ">
                             {/* Check if car.images has more than one image */}

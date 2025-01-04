@@ -430,7 +430,7 @@ const CategoryCard = ({cars}) => {
 {cars.length>0?
         
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {cars.map((car,i) => (
+                {(cars?.length > 0 ? cars : [])?.map((car,i) => (
                     <div key={i} className="border  border-white bg-white p-4 rounded-lg shadow-shad">
                         {/* Carousel inside each card */}
                         <Link href={`/car-detail/${car?._id}`}>
