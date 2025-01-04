@@ -12,7 +12,7 @@ import { GiGearStick, GiSteeringWheel } from "react-icons/gi";
 import { IoCarSport } from "react-icons/io5";
 import Link from "next/link";
 
-const CategoryCard = ({cars}) => {
+const CategoryCard = ({ cars }) => {
     // const [showAll, setShowAll] = useState(false);
     // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -404,7 +404,7 @@ const CategoryCard = ({cars}) => {
     //     },
     // ]);
 
-  console.log(cars)
+    console.log(cars)
     const sliderSettings = {
         dots: true,
         infinite: true,
@@ -422,93 +422,93 @@ const CategoryCard = ({cars}) => {
         dotsClass: "slick-dots slick-thumb",
     };
 
-   
+
 
     return (
         <div className="container mx-auto p-2  md:py-12 ">
 
-{cars.length>0?
-        
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {(cars?.length > 0 ? cars : [])?.map((car,i) => (
-                    <div key={i} className="border  border-white bg-white p-4 rounded-lg shadow-shad">
-                        {/* Carousel inside each card */}
-                        <Link href={`/car-detail/${car?._id}`}>
-                            {car?.images?.length > 1 ? (
-                                <Slider {...sliderSettings}>
-                                    {car.images.map((image, index) => (
-                                        <div
-                                            key={index}
-                                            className="w-full max-h-48 overflow-hidden rounded-xl"
-                                        >
-                                            <img
-                                                src={image}
-                                                alt={`${car.title} image ${index + 1}`}
-                                                className="w-full h-full object-cover transition-transform duration-2000 ease-in-out hover:scale-110 transform origin-center"
-                                            />
-                                        </div>
-                                    ))}
-                                </Slider>
-                            ) : (
-                                // If only one image, display it directly without slider
-                                <div className="w-full max-h-48 overflow-hidden rounded-xl">
-                                    <img
-                                        src={car.images[0]} // Display the single image
-                                        alt={`${car.title} image`}
-                                        className="w-full h-full object-cover transition-transform duration-2000 ease-in-out hover:scale-110 transform origin-center"
-                                    />
-                                </div>
-                            )}
+            {cars?.length > 0 ?
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {(cars?.length > 0 ? cars : [])?.map((car, i) => (
+                        <div key={i} className="border  border-white bg-white p-4 rounded-lg shadow-shad">
+                            {/* Carousel inside each card */}
+                            <Link href={`/car-detail/${car?._id}`}>
+                                {car?.images?.length > 1 ? (
+                                    <Slider {...sliderSettings}>
+                                        {car.images.map((image, index) => (
+                                            <div
+                                                key={index}
+                                                className="w-full max-h-48 overflow-hidden rounded-xl"
+                                            >
+                                                <img
+                                                    src={image}
+                                                    alt={`${car.title} image ${index + 1}`}
+                                                    className="w-full h-full object-cover transition-transform duration-2000 ease-in-out hover:scale-110 transform origin-center"
+                                                />
+                                            </div>
+                                        ))}
+                                    </Slider>
+                                ) : (
+                                    // If only one image, display it directly without slider
+                                    <div className="w-full max-h-48 overflow-hidden rounded-xl">
+                                        <img
+                                            src={car.images[0]} // Display the single image
+                                            alt={`${car.title} image`}
+                                            className="w-full h-full object-cover transition-transform duration-2000 ease-in-out hover:scale-110 transform origin-center"
+                                        />
+                                    </div>
+                                )}
                             </Link>
-                        <div className="px-2 flex flex-col justify-between ">
-                            <h2 className="text-lg md:text-xl font-semibold mt-6    ">{car.title}</h2>
-                            <div className="grid grid-cols-2 mt-3 gap-2">
+                            <div className="px-2 flex flex-col justify-between ">
+                                <h2 className="text-lg md:text-xl font-semibold mt-6    ">{car.title}</h2>
+                                <div className="grid grid-cols-2 mt-3 gap-2">
 
-                            <div className="flex items-center">
-                                < FaCarAlt className="text-red mr-2" />
-                                <p className="text-gray2 font-normal">Model: {car.year}</p>
-                            </div>
-                            <div className="flex items-center">
-                                <BsFuelPumpFill className="text-red mr-2" />
-                                <p className="text-gray2 font-normal">{car.fuelType} </p>
-                            </div>
-                            <div className="flex items-center">
-                                <FaRoad className="text-red mr-2" />
-                                <p className="text-gray2 font-semibold "><span className="font-normal">{car.mileage} miles</span></p>
-                            </div>
-                            <div className="flex items-center">
-                                <GiSteeringWheel  className="text-red mr-2" />
-                                <p className="text-gray2 font-semibold"> <span className="font-normal">{car.transmission}</span></p>
-                            </div>
+                                    <div className="flex items-center">
+                                        < FaCarAlt className="text-red mr-2" />
+                                        <p className="text-gray2 font-normal">Model: {car.year}</p>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <BsFuelPumpFill className="text-red mr-2" />
+                                        <p className="text-gray2 font-normal">{car.fuelType} </p>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <FaRoad className="text-red mr-2" />
+                                        <p className="text-gray2 font-semibold "><span className="font-normal">{car.mileage} miles</span></p>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <GiSteeringWheel className="text-red mr-2" />
+                                        <p className="text-gray2 font-semibold"> <span className="font-normal">{car.transmission}</span></p>
+                                    </div>
 
-                            <div className="flex items-center">
-                                <IoColorFill className="mr-2 text-red" />
-                                <p className="text-gray2 flex items-center font-semibold">
-                                    <span
-                                        className="inline-block w-4 h-4 rounded-full mx-2 font-normal border border-gray2"
-                                        style={{ backgroundColor: car.color }}
-                                        ></span>
-                                    {car.color}
-                                </p>
-                            </div>
-                                        </div>
+                                    <div className="flex items-center">
+                                        <IoColorFill className="mr-2 text-red" />
+                                        <p className="text-gray2 flex items-center font-semibold">
+                                            <span
+                                                className="inline-block w-4 h-4 rounded-full mx-2 font-normal border border-gray2"
+                                                style={{ backgroundColor: car.color }}
+                                            ></span>
+                                            {car.color}
+                                        </p>
+                                    </div>
+                                </div>
 
-                            
 
-                              
-                            <div className="flex justify-between items-center gap-2 mt-4">
-                            <p className="text-red text-2xl  font-bold">${car.price}</p>
-                          
-                            <button className="bg-red text-white  px-4 py-2 rounded-xl">
-                                Contact Seller
-                            </button>
+
+
+                                <div className="flex justify-between items-center gap-2 mt-4">
+                                    <p className="text-red text-2xl  font-bold">${car.price}</p>
+
+                                    <button className="bg-red text-white  px-4 py-2 rounded-xl">
+                                        Contact Seller
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
-                :<p className="text-center w-full text-black rale">No cars found this category</p>}
-          
+                    ))}
+                </div>
+                : <p className="text-center w-full text-black rale">No cars found this category</p>}
+
         </div>
     );
 };
