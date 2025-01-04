@@ -1,3 +1,4 @@
+'use client'
 import { fetchCategories } from '@/Store/Actions/userActions';
 import { redirect } from 'next/navigation';
 import React, { useEffect } from 'react'
