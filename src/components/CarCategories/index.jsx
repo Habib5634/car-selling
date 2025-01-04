@@ -1,9 +1,18 @@
-import React from 'react'
+import { fetchCategories } from '@/Store/Actions/userActions';
+import { redirect } from 'next/navigation';
+import React, { useEffect } from 'react'
 // import Image from 'next/image';
 import { IoCarSport } from "react-icons/io5";
+import { useDispatch, useSelector } from 'react-redux';
 
 const CarCategories = () => {
+const {categories} = useSelector((state)=>state.categories)
+const dispatch=useDispatch()
 
+useEffect(()=>{
+  dispatch(fetchCategories())
+},[])
+console.log(categories)
   const carCategories = [
 
     { name: 'SUV', image: '/images/suv.png' },
@@ -21,9 +30,37 @@ const CarCategories = () => {
 
   ];
 
-  const handleCategoryClick = (categoryName) => {
-    console.log(`Category clicked: ${categoryName}`);
+  const handleCategoryClick = (category) => {
+    redirect(`/category/${category?._id}`)
   };
+  const getCategoryImage=(name)=>{
+    switch(name.toLowerCase()){
+      case 'SUV':
+        return  <img src="/images/suv.png" alt='cat img' className=" object-cover bg-transparent rounded-lg h-[136px] w-[136px]"/>
+        case 'sedan':
+        return  <img src="/images/sedan.png" alt='cat img' className=" object-cover bg-transparent rounded-lg h-[136px] w-[136px]"/>
+        case 'convertible':
+        return  <img src="/images/convertable.png" alt='cat img' className=" object-cover bg-transparent rounded-lg h-[136px] w-[136px]"/>
+        case 'compact':
+        return  <img src="/images/compact.png" alt='cat img' className=" object-cover bg-transparent rounded-lg h-[136px] w-[136px]"/>
+        case 'crossover':
+        return  <img src="/images/crossover.png" alt='cat img' className=" object-cover bg-transparent rounded-lg h-[136px] w-[136px]"/>
+        case 'wagon':
+        return  <img src="/images/wagon.png" alt='cat img' className=" object-cover bg-transparent rounded-lg h-[136px] w-[136px]"/>
+        case 'sports car':
+        return  <img src="/images/sports.png" alt='cat img' className=" object-cover bg-transparent rounded-lg h-[136px] w-[136px]"/>
+        case 'pickup truck':
+        return  <img src="/images/pickup.png" alt='cat img' className=" object-cover bg-transparent rounded-lg h-[136px] w-[136px]"/>
+        case 'coupe':
+        return  <img src="/images/coupe.png" alt='cat img' className=" object-cover bg-transparent rounded-lg h-[136px] w-[136px]"/>
+        case 'electric':
+        return  <img src="/images/electric.png" alt='cat img' className=" object-cover bg-transparent rounded-lg h-[136px] w-[136px]"/>
+        case 'luxury suv':
+        return  <img src="/images/luxury.png" alt='cat img' className=" object-cover bg-transparent rounded-lg h-[136px] w-[136px]"/>
+        default:
+          return <img src="/images/luxury.png" alt='cat img' className=" object-cover bg-transparent rounded-lg h-[136px] w-[136px]"/>;
+      }
+  }
   return (
 
     <div id='category' className='bg-white py-4 sm:py-6 px-3 sm:px-6 md:px-10 w-full relative'>
@@ -44,20 +81,16 @@ const CarCategories = () => {
         <div data-aos="fade-up"
           data-aos-duration="1000"
           className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 py-2 md:py-4 md:px-[10%] ">
-          {carCategories.map((category) => (
+          {categories.map((category) => (
             <div
             data-aos="fade-up"
           data-aos-duration="1000"
-              key={category.name}
+              key={category?.name}
               className="group flex flex-col items-center bg-white p-4  rounded-xl shadow-shad transform transition duration-300 hover:-translate-y-2 cursor-pointer"
-              onClick={() => handleCategoryClick(category.name)}
+              onClick={() => handleCategoryClick(category)}
             >
-              <img
-                src={category.image}
-                alt={category.name}
-                className=" object-cover bg-transparent rounded-lg"
-              />
-              <p className="mt-2 text-sm font-semibold group-hover:text-red">{category.name}</p>
+             {getCategoryImage(category?.name)}
+              <p className="mt-2 text-sm font-semibold group-hover:text-red">{category?.name}</p>
             </div>
           ))}
         </div>

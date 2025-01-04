@@ -19,8 +19,8 @@ import Slider from "react-slick";
 // import Image from "next/image";
 
 export default function Home() {
-   const showModal = useSelector((state) => state.modal.showModal);
-   const dispatch = useDispatch();
+  const showModal = useSelector((state) => state.modal.showModal);
+  const dispatch = useDispatch();
   useEffect(() => {
     Aos.init({
       // Global settings here...
@@ -33,32 +33,32 @@ export default function Home() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    speed:500,
+    speed: 500,
     autoplaySpeed: 5000,
-  
+
   };
-   const handleCloseModal = () => {
-        dispatch(closeModal());
-      };
+  const handleCloseModal = () => {
+    dispatch(closeModal());
+  };
   return (
     <>
-     {showModal && <AuthModel onClose={handleCloseModal}>
-                <AuthComponent />
-            </AuthModel>}
+      {showModal && <AuthModel onClose={handleCloseModal}>
+        <AuthComponent />
+      </AuthModel>}
       <div className="relative " >
         <Navbar />
         <div className="h-screen overflow-x-hidden relative -mt-[83px]">
 
-          <div className="absolute inset-0 z-0 bg-black bg-opacity-20 "></div>  
-        <Slider {...settings} >
+          <div className="absolute inset-0 z-0 bg-black bg-opacity-20 "></div>
+          <Slider {...settings} >
 
-        <div className="bg-herobg   bg-center bg-no-repeat bg-cover h-screen   " >
-          <HeroSection />
-        </div>
-        <div className="bg-img2   bg-center bg-no-repeat bg-cover h-screen  " >
-          <HeroSection />
-        </div>
-        </Slider>
+            <div className="bg-herobg bg-center bg-no-repeat bg-cover h-screen   " >
+              <HeroSection />
+            </div>
+            <div className="bg-img2 bg-center bg-no-repeat bg-cover h-screen  " >
+              <HeroSection />
+            </div>
+          </Slider>
         </div>
 
         {/* other components */}

@@ -10,12 +10,13 @@ import { BsFuelPumpFill } from "react-icons/bs";
 import { IoColorFill } from "react-icons/io5";
 import { GiGearStick, GiSteeringWheel } from "react-icons/gi";
 import { IoCarSport } from "react-icons/io5";
+import { API_URL } from "@/utils/ApiUrl";
+import axios from "axios";
+import Link from "next/link";
 
 const Cards = () => {
-    // const [showAll, setShowAll] = useState(false);
-    // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-    const [cars] = useState([
+    const [cars, setCars] = useState([])
+    const [carss] = useState([
         {
             _id: "1",
             title: "2023 Tesla Model 3",
@@ -165,8 +166,18 @@ const Cards = () => {
         // },
     ]);
 
-    // const [visibleCars, setVisibleCars] = useState(cars.slice(0, 8)); // Initial default 8 cars
+    const fetchLatestCars = async () => {
+        try {
+            const { data } = await axios.get(`${API_URL}/user/latest-cars`)
+            setCars(data?.cars)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
+    useEffect(() => {
+        fetchLatestCars()
+    }, [])
     const sliderSettings = {
         dots: true,
         infinite: true,
@@ -184,49 +195,14 @@ const Cards = () => {
         dotsClass: "slick-dots slick-thumb",
     };
 
-    // Show only 8 cars initially (2 rows if 4 columns per row)
-    // useEffect(() => {
-    //     const handleResize = () => {
-    //         setScreenWidth(window.innerWidth);
-    //     };
 
-    //     // Initial resize check
-    //     handleResize();
-
-    //     // Update visible cars on resize
-    //     window.addEventListener('resize', handleResize);
-
-    //     // Cleanup event listener on component unmount
-    //     return () => window.removeEventListener('resize', handleResize);
-    // }, [cars]);
-
-    // useEffect(() => {
-    //     // Update visible cars based on screen size and showAll state
-    //     if (showAll) {
-    //         if (screenWidth < 640) {
-    //             setVisibleCars(cars.slice(0, 8)); // Show all cars on small screens
-    //         } else if (screenWidth < 768) {
-    //             setVisibleCars(cars.slice(0, 12)); // Show 12 cars on medium screens
-    //         } else {
-    //             setVisibleCars(cars.slice(0, cars.length)); // Show all cars on large screens
-    //         }
-    //     } else {
-    //         if (screenWidth < 640) {
-    //             setVisibleCars(cars.slice(0, 4)); // Show 4 cars on small screens
-    //         } else if (screenWidth < 770) {
-    //             setVisibleCars(cars.slice(0, 6)); // Show 6 cars on medium screens
-    //         } else {
-    //             setVisibleCars(cars.slice(0, 8)); // Show 8 cars on larger screens
-    //         }
-    //     }
-    // }, [showAll, screenWidth, cars]);
 
     const outerSliderSettings = {
         infinite: true,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
-        autoplay: true,
+        // autoplay: true,
         autoplaySpeed: 1500,
         pauseOnHover: true,
         prevArrow: <button className="slick-prev" style={{ background: 'black', color: 'red' }}>{'<'}</button>,
@@ -258,9 +234,10 @@ const Cards = () => {
             },
         ],
     };
-
+    console.log(carss)
+    console.log(cars)
     return (
-        <div className="container mx-auto p-2 md:px-6 md:py-12 lg:py-20">
+        <div id="latest" className="container mx-auto p-2 md:px-6 md:py-12 lg:py-20">
 
 
             <div data-aos="fade-up" data-aos-duration="1000" className="flex flex-col items-center w-full justify-center my-6">
@@ -277,22 +254,39 @@ const Cards = () => {
             </div>
 
             <Slider {...outerSliderSettings}>
-                {cars.map((car) => (
+                {cars?.map((car) => (
                     <div key={car._id} className="h-[456px]">
                         <div className="m-2 border border-white bg-white p-4 rounded-lg shadow-shad  ">
-                            <Slider {...sliderSettings}>
-                                {car.images.map((image, index) => (
-                                    <div key={index} className="w-full h-48 overflow-hidden rounded-xl">
-                                        <img
-                                            src={image}
-                                            alt={`${car.title} image ${index + 1}`}
-                                            className="w-full h-full object-cover transition-transform duration-2000 ease-in-out hover:scale-110 transform origin-center"
-                                        />
-                                    </div>
-                                ))}
-                            </Slider>
+                            {/* Check if car.images has more than one image */}
+                            <Link href={`/car-detail/${car?._id}`}>
+                            {car?.images?.length > 1 ? (
+                                <Slider {...sliderSettings}>
+                                    {car.images.map((image, index) => (
+                                        <div
+                                            key={index}
+                                            className="w-full max-h-48 overflow-hidden rounded-xl"
+                                        >
+                                            <img
+                                                src={image}
+                                                alt={`${car.title} image ${index + 1}`}
+                                                className="w-full h-full object-cover transition-transform duration-2000 ease-in-out hover:scale-110 transform origin-center"
+                                            />
+                                        </div>
+                                    ))}
+                                </Slider>
+                            ) : (
+                                // If only one image, display it directly without slider
+                                <div className="w-full max-h-48 overflow-hidden rounded-xl">
+                                    <img
+                                        src={car.images[0]} // Display the single image
+                                        alt={`${car.title} image`}
+                                        className="w-full h-full object-cover transition-transform duration-2000 ease-in-out hover:scale-110 transform origin-center"
+                                    />
+                                </div>
+                            )}
+                            </Link>
                             <div className="px-2 flex flex-col justify-between ">
-                                <h2 className="text-lg md:text-xl font-semibold mt-6    ">{car.title}</h2>
+                                <h2 className="text-lg md:text-xl font-semibold mt-6   text-nowrap text-ellipsis overflow-hidden ">{car.title}</h2>
                                 <div className="grid grid-cols-2 mt-3 gap-2">
 
                                     <div className="flex items-center">

@@ -1,23 +1,27 @@
 'use client'
 import useScrollTrigger from '@/hooks/useScrollTrigger';
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { FaBars, FaFacebookSquare, FaLinkedin, FaPhoneAlt } from "react-icons/fa";
 import { IoCloseCircleSharp, IoLogoWhatsapp } from "react-icons/io5";
 import { useRouter } from 'next/navigation';
 import { MdEmail } from "react-icons/md";
-
+import { CgProfile } from "react-icons/cg";
 import { openModal } from '@/Store/ReduxSlice/modalSlice';
+import { fetchUserData } from '@/Store/Actions/userActions';
+import ProfileMenu from './ProfileMenu';
 const Navbar = () => {
     const { scrollTrigger, scrollDirection } = useSelector((state) => state.scroll);
     const [showSidebar, setShowSidebar] = useState(false)
-    const dispatch = useDispatch    ();
-
+    const dispatch = useDispatch();
+    const { isAuthenticated } = useSelector((state) => state.userData)
     const handleShowModal = () => {
-      dispatch(openModal());
+        dispatch(openModal());
     };
-  
+    useEffect(() => {
+        dispatch(fetchUserData())
+    }, [dispatch])
    
     const router = useRouter()
     const handelShowSidebar = () => {
@@ -43,9 +47,9 @@ const Navbar = () => {
     return (
         <>
             <div className='w-full shadow-shad'>
-                <div className='w-full shadow-shad absolute top-0 z-30'>
+                <div className='w-full shadow-shad absolute top-0 z-20'>
 
-                    <div className='bg-transparent w-full mx-auto  py-4 z-30 max-w-[1440px] px-5 md:px-8 lg:px-14 flex justify-between flex-wrap gap-4 items-center'>
+                    <div className='bg-transparent w-full mx-auto  py-4 z-40 max-w-[1440px] px-5 md:px-8 lg:px-14 flex justify-between flex-wrap gap-4 items-center'>
                         <div className='hidden md:flex items-center gap-4 text-white '>
                             <div className='flex items-center text-nowrap gap-2'>
                                 <FaPhoneAlt size={14} />
@@ -57,12 +61,13 @@ const Navbar = () => {
                             </div>
 
                         </div>
-                        <div className='text-white flex  items-center gap-4 text- text-purple'>
+                        <div className='text-white flex  items-center gap-4  relative'>
                             <IoLogoWhatsapp className=' hover:text-red anim3 cursor-pointer' />
                             <FaLinkedin className=' hover:text-red anim3 cursor-pointer' />
                             <FaFacebookSquare className=' hover:text-red anim3 cursor-pointer' />
-
-                            <h1 onClick={handleShowModal} className='text-white hover:text-red anim3 cursor-pointer'>Register</h1>
+                            {isAuthenticated ? <ProfileMenu /> :
+                                <h1 onClick={handleShowModal} className='text-white hover:text-red anim3 cursor-pointer'>Register</h1>
+                            }
                         </div>
 
 
@@ -70,7 +75,7 @@ const Navbar = () => {
                 </div>
 
             </div>
-            <div className={`flex z-30 sticky ${scrollTrigger > 56 ? "top-0 anim3" : "top-[56px] anim3"}   justify-center w-full anim1   ${scrollTrigger < 10 ? ' bg-transparent' : " bg-white shadow-shad"} `}>
+            <div className={`flex z-20 sticky ${scrollTrigger > 56 ? "top-0 anim3" : "top-[56px] anim3"}   justify-center w-full anim1   ${scrollTrigger < 10 ? ' bg-transparent' : " bg-white shadow-shad"} `}>
 
                 <div className='flex justify-center w-full max-w-[1440px] mx-auto '>
                     <div className={`flex justify-between items-center   px-5 md:px-8 lg:px-14 py-4   w-full `}>
@@ -95,7 +100,7 @@ const Navbar = () => {
                         <div className='flex lg:hidden items-center gap-4 '>
 
 
-{/* 
+                            {/* 
                             <button onClick={() => scrollToSection('contact')} className={`${scrollTrigger > 1 ? ' border-black hover:border-red hover:text-red ' : 'text-white   border-white hover:bg-red'} anim1 rounded-lg text-center text-[12px]  py-1.5 px-5   font-semibold uppercase bg-transparent border-2  `}>Contact Us</button> */}
 
                             <FaBars className={`${scrollTrigger > 1 ? "text-black" : "text-white"} anim1`} size={25} onClick={handelShowSidebar} />
@@ -135,7 +140,7 @@ const Navbar = () => {
                 </div> */}
             </div>
 
-           
+
         </>
     )
 }
