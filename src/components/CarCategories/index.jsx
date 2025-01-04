@@ -13,22 +13,22 @@ const CarCategories = () => {
     dispatch(fetchCategories())
   }, [])
   console.log(categories)
-  const carCategories = [
+  // const carCategories = [
 
-    { name: 'SUV', image: '/images/suv.png' },
-    { name: 'Sedan', image: '/images/sedan.png' },
-    { name: 'Convertible', image: '/images/convertable.png' },
-    { name: 'Compact', image: '/images/compact.png' },
-    { name: 'Crossover', image: '/images/crossover.png' },
-    { name: 'Wagon', image: '/images/wagon.png' },
-    { name: 'Sports', image: '/images/sports.png' },
-    { name: 'Pickup', image: '/images/pickup.png' },
-    { name: 'Family MPV', image: '/images/family.png' },
-    { name: 'Coupe', image: '/images/coupe.png' },
-    { name: 'Electric', image: '/images/electric.png' },
-    { name: 'Luxury', image: '/images/luxury.png' },
+  //   { name: 'SUV', image: '/images/suv.png' },
+  //   { name: 'Sedan', image: '/images/sedan.png' },
+  //   { name: 'Convertible', image: '/images/convertable.png' },
+  //   { name: 'Compact', image: '/images/compact.png' },
+  //   { name: 'Crossover', image: '/images/crossover.png' },
+  //   { name: 'Wagon', image: '/images/wagon.png' },
+  //   { name: 'Sports', image: '/images/sports.png' },
+  //   { name: 'Pickup', image: '/images/pickup.png' },
+  //   { name: 'Family MPV', image: '/images/family.png' },
+  //   { name: 'Coupe', image: '/images/coupe.png' },
+  //   { name: 'Electric', image: '/images/electric.png' },
+  //   { name: 'Luxury', image: '/images/luxury.png' },
 
-  ];
+  // ];
 
   const handleCategoryClick = (category) => {
     redirect(`/category/${category?._id}`)
@@ -81,7 +81,7 @@ const CarCategories = () => {
         <div data-aos="fade-up"
           data-aos-duration="1000"
           className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 py-2 md:py-4 md:px-[10%] ">
-          {categories.map((category, i) => (
+          {categories?.map((category, i) => (
             <div
               data-aos="fade-up"
               data-aos-duration="1000"
