@@ -112,7 +112,7 @@ const Cards = () => {
                             <Link href={`/car-detail/${car?._id}`}>
                             {car?.images?.length > 1 ? (
                                 <Slider {...sliderSettings}>
-                                    {car.images.map((image, index) => (
+                                    {car?.images?.map((image, index) => (
                                         <div
                                             key={index}
                                             className="w-full max-h-48 overflow-hidden rounded-xl"
@@ -129,8 +129,8 @@ const Cards = () => {
                                 // If only one image, display it directly without slider
                                 <div className="w-full max-h-48 overflow-hidden rounded-xl">
                                     <img
-                                        src={car.images[0]} // Display the single image
-                                        alt={`${car.title} image`}
+                                        src={car?.images[0]} // Display the single image
+                                        alt={`${car?.title} image`}
                                         className="w-full h-full object-cover transition-transform duration-2000 ease-in-out hover:scale-110 transform origin-center"
                                     />
                                 </div>
@@ -142,19 +142,19 @@ const Cards = () => {
 
                                     <div className="flex items-center">
                                         < FaCarAlt className="text-red mr-2" />
-                                        <p className="text-gray2 font-normal">Model: {car.year}</p>
+                                        <p className="text-gray2 font-normal">Model: {car?.year}</p>
                                     </div>
                                     <div className="flex items-center">
                                         <BsFuelPumpFill className="text-red mr-2" />
-                                        <p className="text-gray2 font-normal">{car.fuelType} </p>
+                                        <p className="text-gray2 font-normal">{car?.fuelType} </p>
                                     </div>
                                     <div className="flex items-center">
                                         <FaRoad className="text-red mr-2" />
-                                        <p className="text-gray2 font-semibold "><span className="font-normal">{car.mileage} miles</span></p>
+                                        <p className="text-gray2 font-semibold "><span className="font-normal">{car?.mileage} miles</span></p>
                                     </div>
                                     <div className="flex items-center">
                                         <GiSteeringWheel className="text-red mr-2" />
-                                        <p className="text-gray2 font-semibold"> <span className="font-normal">{car.transmission}</span></p>
+                                        <p className="text-gray2 font-semibold"> <span className="font-normal">{car?.transmission}</span></p>
                                     </div>
 
                                     <div className="flex items-center">
@@ -164,7 +164,7 @@ const Cards = () => {
                                                 className="inline-block w-4 h-4 rounded-full mx-2 font-normal border border-gray2"
                                                 style={{ backgroundColor: car.color }}
                                             ></span>
-                                            {car.color}
+                                            {car?.color}
                                         </p>
                                     </div>
                                 </div>
@@ -173,7 +173,7 @@ const Cards = () => {
 
 
                                 <div className="flex justify-between items-center gap-2 mt-4">
-                                    <p className="text-red text-2xl  font-bold">${car.price}</p>
+                                    <p className="text-red text-2xl  font-bold">${car?.price}</p>
 
                                     <button className="bg-red text-white  px-4 py-2 rounded-xl">
                                         Contact Seller

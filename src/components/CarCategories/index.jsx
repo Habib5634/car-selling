@@ -13,7 +13,7 @@ const CarCategories = () => {
   useEffect(() => {
     dispatch(fetchCategories())
   }, [])
-  console.log(categories)
+  // console.log(categories)
   // const carCategories = [
 
   //   { name: 'SUV', image: '/images/suv.png' },
@@ -82,7 +82,7 @@ const CarCategories = () => {
         <div data-aos="fade-up"
           data-aos-duration="1000"
           className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 py-2 md:py-4 md:px-[10%] ">
-          {categories?.map((category, i) => (
+          {categories?.length > 0 && categories?.map((category, i) => (
             <div
               data-aos="fade-up"
               data-aos-duration="1000"
