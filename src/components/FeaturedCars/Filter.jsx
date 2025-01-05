@@ -73,7 +73,7 @@ const Filter = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full mt-10">
+        <form onSubmit={handleSubmit} className="w-full mt-4">
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-end'>
 
                 {Object.keys(options).map((key) => (
@@ -82,7 +82,7 @@ const Filter = () => {
                         <label htmlFor={key} className="mb-1 font-medium capitalize">
                             {key}
                         </label>
-                        <div className='border   border-gray2 rounded-xl pr-3 '>
+                        <div className='border  rounded-xl border-gray2 pr-3 '>
 
                         <select
                             id={key}

@@ -45,7 +45,7 @@ export default function Home() {
      {showModal && <AuthModel onClose={handleCloseModal}>
                 <AuthComponent />
             </AuthModel>}
-      <div className="relative " >
+      <div className="relative overflow-x-hidden " >
         <Navbar />
         <div className="h-screen overflow-x-hidden relative -mt-[83px]">
 

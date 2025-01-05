@@ -36,20 +36,18 @@ const CarCategories = () => {
           </div>
           <h1 className='text-black text-[25px] md:text-[35px] lg:text-[50px] xl:text-[60px]  font-bold '>Car By Body <span className='text-red'>Type</span></h1>
 
-          <div className="relative w-[30%] md:w-[10%] bg-red h-1 bg-red-600">
-            <div className="absolute top-0 left-0 w-4 h-[6px] md:h-[5px] bg-white animate-move"></div>
+          <div className="relative w-[30%] md:w-[20%] lg:w-[15%] xl:w-[10%] bg-red h-[6px] bg-red-600 overflow-hidden">
+            <div className="absolute top-0 left-0 w-4 h-[6px] md:h-[7px] bg-black animate-move"></div>
           </div>
 
         </div>
         <div data-aos="fade-up"
-          data-aos-duration="1000"
-          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 py-2 md:py-4 md:px-[10%] ">
+          data-aos-duration="3000"
+          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 py-2 md:py-4 md:px-[10%] ">
           {carCategories.map((category) => (
             <div
-            data-aos="fade-up"
-          data-aos-duration="1000"
               key={category.name}
-              className="group flex flex-col items-center bg-white p-4  rounded-xl shadow-shad transform transition duration-300 hover:-translate-y-2 cursor-pointer"
+              className="group flex flex-col items-center bg-gray p-4  rounded-xl shadow-shad transform transition duration-300 hover:-translate-y-2 cursor-pointer"
               onClick={() => handleCategoryClick(category.name)}
             >
               <img
