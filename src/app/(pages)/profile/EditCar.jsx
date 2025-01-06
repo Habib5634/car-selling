@@ -335,7 +335,7 @@ const EditCar = ({ handleActiveTab, user, car }) => {
                             </div>
                             <div className="flex flex-wrap items-center my-6 gap-4">
                                 {formData.images.map((link, index) => (
-                                    <div className=' h-20 w-20 relative'>
+                                    <div key={index} className=' h-20 w-20 relative'>
                                         <img src={link} alt="images" className='h-full w-full object-cover' />
                                         <IoIosCloseCircle size={24} onClick={() => removeImage(index)} className='text-red absolute -top-2 -right-2 cursor-pointer' />
 

@@ -12,7 +12,7 @@ import SellCar from './SellCar'
 import PostedCars from './PostedCars'
 import EditCar from './EditCar'
 
-const Profile = ({user}) => {
+const Profile = () => {
     
     const router = useRouter()
     const { userData, loadingData, errorUser, isAuthenticated } = useSelector((state) => state.userData)
@@ -48,6 +48,7 @@ const handleSelectCar=(car)=>{
     setActiveTab('edit-car')
     router.push(`/profile/?tab=edit-car`)
 }
+
  
     return (
          <div className='relative'>
@@ -55,7 +56,7 @@ const handleSelectCar=(car)=>{
             <div className="bg-catbg relative -mt-[83px]  bg-center bg-no-repeat bg-cover h-[250px]   ">
                 <div className="absolute inset-0 z-0 bg-black bg-opacity-80 "></div>
                 <div className='flex justify-center items-center h-full '>
-                    <h1 className='text-white z-30 text-3xl font-bold mt-24'>Hello, {user?.firstName} {user?.lastName}</h1>
+                    <h1 className='text-white  text-nowrap overflow-hidden text-ellipsis z-30 text-3xl font-bold mt-24'>Hello, <span className='uppercase'>{userData?.firstName?.charAt(0)}. {userData?.lastName}</span></h1>
 
                 </div>
             </div>
@@ -66,7 +67,7 @@ const handleSelectCar=(car)=>{
                         <div className='flex flex-col gap-3 items-center'>
                             <img src="/cars/car.jpg" alt="user-profile" className='h-[200px] w-[200px] md:h-[150px] md:w-[150px] rounded-full bg-lightgray mx-auto' />
 
-                            <h1 className='text-center border-b w-fit text-nowrap text-ellipsis text-20 md:text-24 uppercase font-semibold text-purple'>{userData?.fullName}</h1>
+                           
                         </div>
                         <div className='flex flex-row md:flex-col overflow-x-auto scrollbar-hide w-full mx-auto justify-start  mt-6 items-center md:items-start px-6 gap-6'>
                             <button onClick={() => handleActiveTab('profile')} className={` text-nowrap ${activeTab === 'profile' ? 'text-red anim3  font-semibold border-b text-20' : 'text-lightgray text-18'}`}>Profile</button>
