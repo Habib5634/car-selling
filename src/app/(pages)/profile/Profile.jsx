@@ -55,7 +55,7 @@ const handleSelectCar=(car)=>{
             <div className="bg-catbg relative -mt-[83px]  bg-center bg-no-repeat bg-cover h-[250px]   ">
                 <div className="absolute inset-0 z-0 bg-black bg-opacity-80 "></div>
                 <div className='flex justify-center items-center h-full '>
-                    <h1 className='text-white z-30 text-3xl font-bold mt-24'>Hello, User</h1>
+                    <h1 className='text-white z-30 text-3xl font-bold mt-24'>Hello, {user?.firstName} {user?.lastName}</h1>
 
                 </div>
             </div>
