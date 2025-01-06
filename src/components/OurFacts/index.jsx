@@ -44,7 +44,7 @@ const OurFacts = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 mt-8 lg:grid-cols-4  px-2 md:px-5">
           {cards.map((card) => (
-            <div key={card.id} className="border-y-2 md:border-x-2 border-white bg-gray py-8 px-6  text-center">
+            <div key={card.id} className="border-y border-x-0 md:border-y-0 md:border-x border-white bg-gray py-8 px-6  text-center">
               <div className="flex justify-center mb-4">
                 {card.icon}
               </div>

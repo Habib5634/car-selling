@@ -3,14 +3,18 @@ import useScrollTrigger from '@/hooks/useScrollTrigger';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { FaBars, FaFacebookSquare, FaLinkedin, FaPhoneAlt } from "react-icons/fa";
-import { IoCloseCircleSharp, IoLogoWhatsapp } from "react-icons/io5";
+import { FaBars, FaFacebookSquare, FaLinkedin, FaPhoneAlt, FaRegUserCircle } from "react-icons/fa";
+import { IoChatboxEllipses, IoCloseCircleSharp, IoLogoWhatsapp } from "react-icons/io5";
 import { useRouter } from 'next/navigation';
 import { MdEmail } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { openModal } from '@/Store/ReduxSlice/modalSlice';
 import { fetchUserData } from '@/Store/Actions/userActions';
 import ProfileMenu from './ProfileMenu';
+import { HiOutlineLogout } from "react-icons/hi";
+
+import { clearAuth } from '@/Store/ReduxSlice/userSlice';
+import toast from 'react-hot-toast';
 const Navbar = () => {
     const { scrollTrigger, scrollDirection } = useSelector((state) => state.scroll);
     const [showSidebar, setShowSidebar] = useState(false)
@@ -21,7 +25,7 @@ const Navbar = () => {
     };
     useEffect(() => {
         dispatch(fetchUserData())
-    }, [dispatch])
+    }, [])
    
     const router = useRouter()
     const handelShowSidebar = () => {
@@ -44,6 +48,17 @@ const Navbar = () => {
         // Close the sidebar after scrolling
         setShowSidebar(false);
     };
+    const handleLogout = async()=>{
+        try {
+            localStorage.removeItem('token')
+          dispatch(clearAuth());
+          toast.success("Logout Successfully")
+          router.push('/login')
+       
+        } catch (error) {
+          console.log(error)
+        }
+      }
     return (
         <>
             <div className='w-full shadow-shad'>
@@ -65,7 +80,15 @@ const Navbar = () => {
                             <IoLogoWhatsapp className=' hover:text-red anim3 cursor-pointer' />
                             <FaLinkedin className=' hover:text-red anim3 cursor-pointer' />
                             <FaFacebookSquare className=' hover:text-red anim3 cursor-pointer' />
-                            {isAuthenticated ? <ProfileMenu /> :
+                            {isAuthenticated ? 
+                            <>
+                                  <Link href={'/profile'}>
+                                  <FaRegUserCircle className=' hover:text-red anim3 cursor-pointer'   /> 
+                                  </Link>
+                                  <IoChatboxEllipses  className=' hover:text-red anim3 cursor-pointer'   /> 
+                                  <HiOutlineLogout  className=' hover:text-red anim3 cursor-pointer'   onClick={handleLogout}/> 
+                            </>
+                            :
                                 <h1 onClick={handleShowModal} className='text-white hover:text-red anim3 cursor-pointer'>Register</h1>
                             }
                         </div>
