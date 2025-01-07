@@ -144,7 +144,7 @@ const SellCar = ({user}) => {
     };
     return (
         <div>
-            <h1 className="text-xl font-bold mb-4">Add New Product for Auction</h1>
+            <h1 className="text-xl font-bold mb-4">Add New Car for Selling</h1>
             <form onSubmit={handleSubmit} className="">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Title*/}

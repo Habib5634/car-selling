@@ -95,7 +95,7 @@ const EditCar = ({ handleActiveTab, user, car }) => {
 
             <IoIosArrowBack className='mb-4 ' onClick={() => handleActiveTab('cars')} />
             <div>
-                <h1 className="text-xl font-bold mb-4">Add New Product for Auction</h1>
+                <h1 className="text-xl font-bold mb-4">Edit Car Detail</h1>
                 <form onSubmit={handleSubmit} className="">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {/* Title*/}
